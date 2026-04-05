@@ -1,6 +1,26 @@
+<div align="center">
+
 # Finance Dashboard Backend
 
-A production-style backend for a finance dashboard system built with Node.js, Express, Prisma, and PostgreSQL. The project focuses on clean API design, role-based access control, financial record management, dashboard analytics, validation, and reliable backend behavior.
+<p>A production-style backend for a finance dashboard system built with Node.js, Express, Prisma, and PostgreSQL. The project focuses on clean API design, role-based access control, financial record management, dashboard analytics, validation, and reliable backend behavior.</p>
+
+<p>
+  <img src="https://img.shields.io/badge/Node.js-22.x-2F6B3B?style=for-the-badge&logo=node.js&logoColor=white" alt="Node.js" />
+  <img src="https://img.shields.io/badge/Express-4.x-1F2937?style=for-the-badge&logo=express&logoColor=white" alt="Express" />
+  <img src="https://img.shields.io/badge/Prisma-ORM-0F172A?style=for-the-badge&logo=prisma&logoColor=white" alt="Prisma" />
+  <img src="https://img.shields.io/badge/PostgreSQL-Database-1D4ED8?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL" />
+</p>
+
+<p>
+  <img src="https://img.shields.io/badge/JWT-Auth-7C3AED?style=for-the-badge&logo=jsonwebtokens&logoColor=white" alt="JWT" />
+  <img src="https://img.shields.io/badge/Zod-Validation-2563EB?style=for-the-badge" alt="Zod" />
+  <img src="https://img.shields.io/badge/Swagger-API%20Docs-047857?style=for-the-badge&logo=swagger&logoColor=white" alt="Swagger" />
+  <img src="https://img.shields.io/badge/Jest-Testing-7F1D1D?style=for-the-badge&logo=jest&logoColor=white" alt="Jest" />
+</p>
+
+</div>
+
+---
 
 It was designed to satisfy a backend engineering assignment centered on:
 
@@ -11,7 +31,10 @@ It was designed to satisfy a backend engineering assignment centered on:
 - validation and error handling
 - real data persistence
 
-## Table of Contents
+<details>
+<summary><strong>Table of Contents</strong></summary>
+
+<br />
 
 - [Overview](#overview)
 - [Highlights](#highlights)
@@ -36,6 +59,10 @@ It was designed to satisfy a backend engineering assignment centered on:
 - [Design Decisions and Assumptions](#design-decisions-and-assumptions)
 - [Submission Notes](#submission-notes)
 
+</details>
+
+---
+
 ## Overview
 
 This backend powers a finance dashboard where different users interact with financial data based on their role.
@@ -57,6 +84,8 @@ The codebase is organized with clear separation of concerns:
 - middleware enforces authentication, authorization, and validation
 - Prisma manages persistence and data access
 
+---
+
 ## Highlights
 
 - Clean Express module structure with feature-based separation
@@ -70,6 +99,8 @@ The codebase is organized with clear separation of concerns:
 - Centralized error handling and consistent API response format
 - Swagger/OpenAPI documentation built into the app
 - Unit tests plus live end-to-end API verification against a real PostgreSQL database
+
+---
 
 ## Assignment Coverage
 
@@ -99,6 +130,8 @@ Additional enhancements included:
 - unit tests
 - live end-to-end API testing
 
+---
+
 ## System Architecture
 
 ```mermaid
@@ -124,6 +157,8 @@ flowchart LR
 7. Services perform data access and business logic through Prisma.
 8. Responses return through a consistent success or error shape.
 
+---
+
 ## Tech Stack
 
 | Layer | Technology |
@@ -139,6 +174,8 @@ flowchart LR
 | API docs | Swagger UI |
 | Testing | Jest |
 | Security middleware | Helmet, CORS, compression, express-rate-limit |
+
+---
 
 ## Project Structure
 
@@ -185,6 +222,8 @@ flowchart LR
 | `prisma/seed.js` | Demo data for users and finance records |
 | `tests/unit/` | Unit tests for middleware, helpers, and service behavior |
 
+---
+
 ## Role and Access Matrix
 
 | Capability | Viewer | Analyst | Admin |
@@ -205,6 +244,8 @@ flowchart LR
 | Get user by id | No | No | Yes |
 | Update user | No | No | Yes |
 | Update user status | No | No | Yes |
+
+---
 
 ## Data Model
 
@@ -265,6 +306,8 @@ Represents a persistent refresh-token session.
 | `createdAt` | `DateTime` | Auto-generated |
 | `updatedAt` | `DateTime` | Auto-updated |
 
+---
+
 ## API Design
 
 ### Base URLs
@@ -282,6 +325,8 @@ Represents a persistent refresh-token session.
 - Refresh tokens are sent in request bodies for `/auth/refresh` and `/auth/logout`
 - Refresh tokens are rotated and old sessions are revoked
 - `logout-all` revokes all active refresh sessions for the authenticated user
+
+---
 
 ## Environment Variables
 
@@ -342,6 +387,8 @@ SEED_ANALYST_PASSWORD=Analyst@12345
 SEED_VIEWER_EMAIL=viewer@example.com
 SEED_VIEWER_PASSWORD=Viewer@12345
 ```
+
+---
 
 ## Getting Started
 
@@ -405,6 +452,8 @@ Production-style local start:
 npm start
 ```
 
+---
+
 ## Available Scripts
 
 | Script | Purpose |
@@ -416,6 +465,8 @@ npm start
 | `npm run prisma:deploy` | Apply migrations in deploy mode |
 | `npm run prisma:seed` | Seed demo users and finance records |
 | `npm test` | Run Jest unit tests |
+
+---
 
 ## Database and Prisma Workflow
 
@@ -444,6 +495,8 @@ The seed script:
 - clears existing `FinanceRecord` entries
 - inserts demo income and expense records across several months
 
+---
+
 ## Seeded Demo Accounts
 
 After running `npm run prisma:seed`, you can log in with:
@@ -453,6 +506,8 @@ After running `npm run prisma:seed`, you can log in with:
 | Admin | `admin@example.com` | `Admin@12345` |
 | Analyst | `analyst@example.com` | `Analyst@12345` |
 | Viewer | `viewer@example.com` | `Viewer@12345` |
+
+---
 
 ## API Endpoints
 
@@ -535,6 +590,8 @@ Admin-only module.
 | `endDate` | Optional date upper bound |
 | `recentLimit` | Number of recent records to return, max `50` |
 
+---
+
 ## Request and Response Shape
 
 ### Success response
@@ -592,6 +649,8 @@ Successful auth actions return:
 }
 ```
 
+---
+
 ## Validation and Error Handling
 
 ### Validation
@@ -623,6 +682,8 @@ Validation is handled through Zod schemas for:
 - requesting non-existent resources
 - unauthorized role access
 
+---
+
 ## Security and Operational Features
 
 The project includes practical backend hardening features:
@@ -636,6 +697,8 @@ The project includes practical backend hardening features:
 - hashed refresh tokens stored in the database
 - refresh-token rotation
 - graceful Prisma connect/disconnect lifecycle
+
+---
 
 ## Testing
 
@@ -667,6 +730,8 @@ Coverage can be generated with:
 npm test -- --coverage
 ```
 
+---
+
 ## Live End-to-End Verification
 
 This backend was verified with a live API audit against a real PostgreSQL-backed running server.
@@ -695,6 +760,8 @@ Live audit result:
 
 The detailed request and response logs were captured into local audit artifacts during testing.
 
+---
+
 ## Design Decisions and Assumptions
 
 - Self-registration creates a `VIEWER`
@@ -705,6 +772,8 @@ The detailed request and response logs were captured into local audit artifacts 
 - `includeDeleted=true` only matters for admins
 - Dashboard trends are grouped by month
 - Services hold business logic so controllers stay thin
+
+---
 
 ## Submission Notes
 
@@ -719,6 +788,8 @@ What a reviewer should notice:
 - realistic auth/session handling
 - meaningful documentation
 - test coverage plus live verification
+
+---
 
 ## Quick Start
 
