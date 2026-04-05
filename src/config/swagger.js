@@ -200,6 +200,13 @@ const swaggerSpec = {
         responses: { '200': { description: 'Current user returned' } }
       }
     },
+    '/auth/logout-all': {
+      post: {
+        summary: 'Revoke all active refresh sessions for the authenticated user',
+        security: [{ bearerAuth: [] }],
+        responses: { '200': { description: 'All sessions revoked successfully' } }
+      }
+    },
     '/users': {
       get: {
         summary: 'List users',
