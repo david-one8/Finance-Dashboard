@@ -1,6 +1,19 @@
 const { z } = require('zod');
 const { FinanceType } = require('../../config/roles');
 
+const booleanFromQuery = z.preprocess((value) => {
+  if (value === undefined) return false;
+  if (typeof value === 'boolean') return value;
+
+  if (typeof value === 'string') {
+    const normalized = value.trim().toLowerCase();
+    if (['true', '1', 'yes'].includes(normalized)) return true;
+    if (['false', '0', 'no', ''].includes(normalized)) return false;
+  }
+
+  return value;
+}, z.boolean());
+
 const createRecordSchema = z.object({
   amount: z.coerce.number().positive(),
   type: z.nativeEnum(FinanceType),
@@ -27,7 +40,7 @@ const listRecordsQuerySchema = z.object({
   search: z.string().trim().optional(),
   startDate: z.coerce.date().optional(),
   endDate: z.coerce.date().optional(),
-  includeDeleted: z.coerce.boolean().default(false)
+  includeDeleted: booleanFromQuery
 }).refine((value) => {
   if (value.startDate && value.endDate) {
     return value.startDate <= value.endDate;
