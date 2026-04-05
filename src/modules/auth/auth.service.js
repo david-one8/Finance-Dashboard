@@ -122,7 +122,7 @@ async function refresh(refreshToken) {
   return { user: sanitizeUser(user), tokens };
 }
 
-async function logout(refreshToken) {
+async function logout(refreshToken, currentUserId) {
   let payload;
   try {
     payload = verifyRefreshToken(refreshToken);
@@ -132,6 +132,10 @@ async function logout(refreshToken) {
 
   if (!payload?.jti || !payload?.sub) {
     return { revoked: false };
+  }
+
+  if (currentUserId && payload.sub !== currentUserId) {
+    throw new ApiError(403, 'You can only revoke your own sessions');
   }
 
   await prisma.refreshSession.updateMany({
